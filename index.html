@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lock Funsion | Comunidade Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #23272A 0%, #1A1C1E 100%);
+            color: #EAEAEA;
+            line-height: 1.65;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Área da imagem principal */
+        .cabecalho-imagem {
+            width: 100%;
+            background: linear-gradient(180deg, #2F3136 0%, #26282C 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(24px, 7vw, 48px) 0;
+            margin-bottom: 0;
+        }
+        .avatar {
+            width: clamp(300px, 85vw, 520px);
+            height: auto;
+            object-fit: contain;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            filter: drop-shadow(0 6px 16px rgba(88, 101, 242, 0.25));
+            transition: transform 0.3s ease;
+        }
+        .avatar:hover {
+            transform: scale(1.03);
+        }
+        /* Cabeçalho de texto */
+        header {
+            background: linear-gradient(180deg, #2F3136 0%, #26282C 100%);
+            padding: clamp(24px, 6vw, 40px) 0;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            margin-bottom: clamp(32px, 7vw, 56px);
+            border-bottom: 2px solid rgba(88, 101, 242, 0.3);
+        }
+        header h1 {
+            font-size: clamp(36px, 10vw, 56px);
+            color: #FFFFFF;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 8px rgba(88, 101, 242, 0.4);
+        }
+        header p {
+            font-size: clamp(15px, 3.8vw, 18px);
+            color: #B9BBBE;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto clamp(32px, 7vw, 56px);
+            padding: 0 clamp(20px, 5vw, 32px);
+        }
+        .secao {
+            background: linear-gradient(145deg, #2F3136 0%, #292B2F 100%);
+            border-radius: 12px;
+            padding: clamp(24px, 6vw, 36px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            margin-bottom: clamp(24px, 6vw, 40px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #5865F2;
+        }
+        .secao:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.2);
+        }
+        .secao h2 {
+            font-size: clamp(20px, 4.8vw, 24px);
+            color: #FFFFFF;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #5865F2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            flex-wrap: wrap;
+        }
+        .secao h2 i {
+            color: #5865F2;
+            font-size: clamp(20px, 4.2vw, 22px);
+            filter: drop-shadow(0 0 4px rgba(88,101,242,0.5));
+        }
+        .texto-fusion {
+            color: #DCDDDE;
+            font-size: clamp(15px, 3.8vw, 17px);
+            line-height: 2.4;
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 400;
+        }
+        .link-canal {
+            text-align: center;
+            padding: clamp(16px, 4.5vw, 22px);
+            background: linear-gradient(135deg, #40444B 0%, #36393F 100%);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+        }
+        .link-canal:hover {
+            background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+            transform: scale(1.02);
+        }
+        .link-canal a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: clamp(15px, 3.8vw, 17px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cargo {
+            padding: clamp(18px, 4.5vw, 24px) 0;
+            border-bottom: 1px solid rgba(88, 101, 242, 0.2);
+            transition: padding-left 0.3s ease;
+        }
+        .cargo:hover {
+            padding-left: 8px;
+        }
+        .cargo:last-child { border-bottom: none; }
+        .cargo h3 {
+            color: #FFFFFF;
+            font-size: clamp(17px, 4.2vw, 20px);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .preco {
+            color: #43B581;
+            font-weight: 700;
+            font-size: clamp(16px, 4vw, 19px);
+            text-shadow: 0 0 6px rgba(67, 181, 129, 0.4);
+        }
+        .cargo ul {
+            list-style: none;
+            padding-left: clamp(20px, 6vw, 30px);
+        }
+        .cargo li {
+            color: #DCDDDE;
+            font-size: clamp(15px, 3.8vw, 17px);
+            margin-bottom: 8px;
+            position: relative;
+            font-weight: 400;
+        }
+        .cargo li::before {
+            content: "→";
+            position: absolute;
+            left: clamp(-24px, -6vw, -30px);
+            color: #5865F2;
+            font-weight: 500;
+        }
+        .aviso-vip {
+            margin-top: 28px;
+            padding: clamp(18px, 4.5vw, 24px);
+            background: linear-gradient(135deg, #292B2F 0%, #202225 100%);
+            border-radius: 10px;
+            color: #FFFFFF;
+            font-size: clamp(15px, 3.8vw, 17px);
+            text-align: center;
+            font-weight: 400;
+            line-height: 1.9;
+            border: 1px solid rgba(67, 181, 129, 0.3);
+        }
+        .aviso-vip a {
+            color: #43B581;
+            text-decoration: none;
+            font-weight: 600;
+            transition: text-shadow 0.3s ease;
+        }
+        .aviso-vip a:hover {
+            text-shadow: 0 0 8px rgba(67, 181, 129, 0.6);
+        }
+        .regras-lista { list-style: none; }
+        .regras-lista li {
+            padding: clamp(16px, 4vw, 20px) 0;
+            border-bottom: 1px solid rgba(88, 101, 242, 0.2);
+            transition: background 0.3s ease;
+        }
+        .regras-lista li:hover {
+            background-color: rgba(88, 101, 242, 0.05);
+        }
+        .regras-lista li:last-child { border-bottom: none; }
+        .regras-lista strong {
+            color: #FFFFFF;
+            font-size: clamp(16px, 4vw, 19px);
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .regras-lista p {
+            color: #B9BBBE;
+            font-size: clamp(15px, 3.8vw, 17px);
+            padding-left: clamp(24px, 7vw, 32px);
+            font-weight: 400;
+        }
+        .regras-lista a {
+            color: #5865F2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .regras-lista a:hover { text-decoration: underline; }
+        footer {
+            text-align: center;
+            padding: clamp(20px, 5vw, 32px);
+            background: linear-gradient(180deg, #202225 0%, #18191C 100%);
+            color: #96989D;
+            font-size: clamp(13px, 3.2vw, 15px);
+            margin-top: clamp(24px, 6vw, 40px);
+            font-weight: 400;
+            border-top: 2px solid rgba(88, 101, 242, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <!-- Área da imagem principal -->
+    <div class="cabecalho-imagem">
+        <img src="https://lh3.googleusercontent.com/d/1J_OhKG7INZdJtQSbQhMO3jxZQf0-CbtG" alt="Logo Lock Funsion" class="avatar">
+    </div>
+
+    <header>
+        <h1>Lock Funsion</h1>
+        <p>Comunidade Oficial e Parceira | Serviços e Segurança</p>
+    </header>
+
+    <div class="container">
+        <!-- Fusion E-Sports -->
+        <div class="secao">
+            <h2><i class="fas fa-trophy"></i> Fusion E-Sports — Parceira Oficial</h2>
+            <div class="texto-fusion">
+                <p>  Atendimento rápido e eficiente</p>
+                <p>  Suporte e mediação 24 horas por dia</p>
+                <p>  Salas disponíveis em até 1 minuto após confirmação</p>
+            </div>
+            <div class="link-canal">
+                <a href="https://discord.gg/tjcYc5VdTr" target="_blank">
+                    <i class="fab fa-discord"></i> Acessar Servidor da Fusion
+                </a>
+            </div>
+        </div>
+
+        <!-- FALK STORE -->
+        <div class="secao">
+            <h2><i class="fas fa-store"></i> FALK STORE — Parceira Oficial</h2>
+            <div class="link-canal">
+                <a href="https://discord.gg/w7nN9qDpQY" target="_blank">
+                    <i class="fab fa-discord"></i> Acessar Servidor da Falk Store
+                </a>
+            </div>
+        </div>
+
+        <!-- Estoque de Contas Free Fire -->
+        <div class="secao">
+            <h2><i class="fas fa-fire"></i> Estoque de Contas — Free Fire</h2>
+            <div class="link-canal">
+                <a href="https://discord.com/channels/1313249365954920548/1493747389503115335/1519173308904640564" target="_blank">
+                    <i class="fab fa-discord"></i> Ver Estoque Atual
+                </a>
+            </div>
+        </div>
+
+        <!-- VIP Cargos -->
+        <div class="secao">
+            <h2><i class="fas fa-gem"></i> Planos VIP — Lock Funsion</h2>
+            <p style="color:#B9BBBE; margin-bottom:24px; font-weight:400;">Escolha o plano ideal para você e aproveite benefícios exclusivos dentro da nossa comunidade.</p>
+
+            <div class="cargo">
+                <h3>Plano Básico <span class="preco">R$ 4,90</span></h3>
+                <ul>
+                    <li>Permissão para enviar imagens e vídeos</li>
+                    <li>Identificação visual diferenciada</li>
+                    <li>Destaque na lista de membros</li>
+                </ul>
+            </div>
+
+            <div class="cargo">
+                <h3>Plano Intermediário <span class="preco">R$ 9,90</span></h3>
+                <ul>
+                    <li>Todos os benefícios do plano básico</li>
+                    <li>Permissão para gerenciar conexões</li>
+                    <li>Acesso prioritário a salas lotadas</li>
+                    <li>Ferramentas de organização</li>
+                    <li>Destaque maior na comunidade</li>
+                </ul>
+            </div>
+
+            <div class="cargo">
+                <h3>Plano Avançado <span class="preco">R$ 19,90</span></h3>
+                <ul>
+                    <li>Todos os benefícios anteriores</li>
+                    <li>Permissões de moderação</li>
+                    <li>Reconhecimento especial</li>
+                </ul>
+            </div>
+
+            <div class="cargo">
+                <h3>Plano Premium <span class="preco">R$ 45,90</span></h3>
+                <ul>
+                    <li>Todos os benefícios anteriores</li>
+                    <li>Controles exclusivos</li>
+                    <li>Personalização de perfil</li>
+                    <li>Maior visibilidade na comunidade</li>
+                </ul>
+            </div>
+
+            <div class="cargo">
+                <h3>Plano Elite <span class="preco">R$ 79,90</span></h3>
+                <ul>
+                    <li>Todos os benefícios anteriores</li>
+                    <li>Efeitos visuais exclusivos</li>
+                    <li>Atendimento com prioridade máxima</li>
+                    <li>Destaque em todas as áreas</li>
+                </ul>
+            </div>
+
+            <div class="cargo">
+                <h3>Plano Supremo <span class="preco">R$ 109,90</span></h3>
+                <ul>
+                    <li>Todos os benefícios anteriores</li>
+                    <li>Canal privado exclusivo</li>
+                    <li>Ambiente totalmente personalizável</li>
+                    <li>Permissão para falar em eventos oficiais</li>
+                </ul>
+            </div>
+
+            <div class="aviso-vip">
+                Após a aquisição do Plano Supremo, abra um chamado para configurar sua área exclusiva:<br>
+                <a href="https://discord.com/channels/1313249365954920548/1493747468784107650/1497280438450786457" target="_blank">Abrir Chamado de Suporte</a>
+            </div>
+        </div>
+
+        <!-- Regras -->
+        <div class="secao">
+            <h2><i class="fas fa-book"></i> Normas de Conduta</h2>
+            <ul class="regras-lista">
+                <li>
+                    <strong>1 — Respeito Mútuo</strong>
+                    <p>Proibido qualquer tipo de ofensa, discriminação, conflito ou provocação com outros membros.</p>
+                </li>
+                <li>
+                    <strong>2 — Uso Responsável dos Canais</strong>
+                    <p>Não entre e saia repetidamente sem motivo ou atrapalhe as conversas em andamento.</p>
+                </li>
+                <li>
+                    <strong>3 — Organização e Qualidade</strong>
+                    <p>Evite mensagens repetitivas, textos sem sentido, gritos ou uso inadequado de áudio.</p>
+                </li>
+                <li>
+                    <strong>4 — Integridade dos Cargos</strong>
+                    <p>O abuso de privilégios, como mover, silenciar ou desconectar membros, resulta na perda imediata do cargo.</p>
+                </li>
+                <li>
+                    <strong>5 — Igualdade de Regras</strong>
+                    <p>Todos, independentemente do cargo, seguem as mesmas normas. O descumprimento acarreta perda de benefícios.</p>
+                </li>
+                <li>
+                    <strong>6 — Tolerância Zero a Abusos</strong>
+                    <p>Qualquer uso indevido de permissões resulta em suspensão ou remoção definitiva da comunidade.</p>
+                </li>
+                <li>
+                    <strong>7 — Suporte com Clareza</strong>
+                    <p>Abra chamados apenas quando necessário e explique claramente o que precisa para agilizar o atendimento.</p>
+                </li>
+                <li>
+                    <strong>8 — Integridade do Sistema</strong>
+                    <p>É proibido explorar falhas, interpretar regras de forma forçada ou burlar qualquer norma estabelecida.</p>
+                </li>
+                <li>
+                    <strong>9 — Conformidade com Diretrizes</strong>
+                    <p>Seguimos rigorosamente as regras oficiais do Discord: <a href="https://discord.com/guidelines" target="_blank">discord.com/guidelines</a></p>
+                </li>
+                <li>
+                    <strong>10 — Penalidades Aplicáveis</strong>
+                    <p>Conforme a gravidade, podem ser aplicadas restrições, suspensões, perda de cargos ou banimento permanente.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Lock Funsion — Todos os direitos reservados | Comunidade segura e regulamentada
+    </footer>
+</body>
+</html>
